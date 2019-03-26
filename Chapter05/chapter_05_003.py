@@ -12,6 +12,7 @@ if not os.path.isfile(yolo_config):
     with open(yolo_config, 'wb') as f:
         f.write(r.content)
 
+print("download yolov3.cfg finished")
 # Download YOLO net weights
 # We'll it from the YOLO author's website
 yolo_weights = 'yolov3.weights'
@@ -20,7 +21,7 @@ if not os.path.isfile(yolo_weights):
     r = requests.get(url)
     with open(yolo_weights, 'wb') as f:
         f.write(r.content)
-
+print("download yolov3.weights finished")
 # Download class names file
 # Contains the names of the classes the network can detect
 classes_file = 'coco.names'
@@ -29,11 +30,11 @@ if not os.path.isfile(classes_file):
     r = requests.get(url)
     with open(classes_file, 'wb') as f:
         f.write(r.content)
-
+print("download coco.names finished")
 # load class names
 with open(classes_file, 'r') as f:
     classes = [line.strip() for line in f.readlines()]
-
+print("download coco.names r")
 # Download object detection image
 image_file = 'source.jpg'
 if not os.path.isfile(image_file):
@@ -42,6 +43,7 @@ if not os.path.isfile(image_file):
     with open(image_file, 'wb') as f:
         f.write(r.content)
 
+print("download image_file  finished")
 # read and normalize image
 image = cv2.imread(image_file)
 blob = cv2.dnn.blobFromImage(image, 1 / 255, (416, 416), (0, 0, 0), True, crop=False)
