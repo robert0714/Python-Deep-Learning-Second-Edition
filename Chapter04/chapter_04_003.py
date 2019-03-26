@@ -5,6 +5,14 @@ from keras.layers import Dense, Dropout, Activation, Flatten, BatchNormalization
 from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 
+from tensorflow.keras.backend import set_session
+import tensorflow as tf
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
+set_session(session) # set this TensorFlow session as the default session for Keras
+
 batch_size = 50
 
 (X_train, Y_train), (X_test, Y_test) = cifar10.load_data()
