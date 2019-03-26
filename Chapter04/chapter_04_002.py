@@ -14,6 +14,15 @@ from keras.layers import Flatten
 
 from keras.utils import np_utils
 
+from tensorflow.keras.backend import set_session
+import tensorflow as tf
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config)
+set_session(session) # set this TensorFlow session as the default session for Keras
+
+
 (X_train, Y_train), (X_test, Y_test) = mnist.load_data()
 
 X_train = X_train.reshape(60000, 28, 28, 1)
